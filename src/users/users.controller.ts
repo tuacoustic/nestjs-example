@@ -1,10 +1,10 @@
 import { Body, Controller, Delete, Get, HttpStatus, Param, Post, Put, UseGuards, Request, forwardRef, Inject } from "@nestjs/common";
 import { ApiTags } from "@nestjs/swagger";
 import { InjectRolesBuilder, RolesBuilder } from "nest-access-control";
-import { AppResources, AppRoles } from "src/app.roles";
-import { userTypes } from "src/common/code-type/users.code-type";
-import { Auth, User } from "src/common/decorators";
-import { Resp } from "src/common/resp";
+import { AppResources, AppRoles } from "../app.roles";
+import { userTypes } from "../common/code-type/users.code-type";
+import { Auth, User } from "../common/decorators";
+import { Resp } from "../common/resp";
 import { RegisterUserDto, UpdateUserDto, UserDto } from "./dtos";
 import { UserService } from "./users.service";
 

@@ -1,5 +1,5 @@
-import { initialState1678673901834 } from "src/config/mysql/migration/1678673901834-initialState";
-import { UserEntity } from "src/users/users.entity";
+import { initialState1678673901834 } from "../../config/mysql/migration/1678673901834-initialState";
+import { UserEntity } from "../../users/users.entity";
 import { DataSource, DataSourceOptions } from "typeorm";
 
 export const dataSourceOptions: DataSourceOptions = {

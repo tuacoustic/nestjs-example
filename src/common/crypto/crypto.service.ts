@@ -1,6 +1,6 @@
 import { Injectable } from "@nestjs/common";
 import { createHash, createCipheriv, createDecipheriv } from "crypto";
-import configuration from "src/config/configuration";
+import configuration from "../../config/configuration";
 import { CryptoResp } from "../constant";
 
 @Injectable()

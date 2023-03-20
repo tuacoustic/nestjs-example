@@ -1,6 +1,6 @@
 import { Injectable } from "@nestjs/common";
 import { InjectRepository } from "@nestjs/typeorm";
-import { BaseService } from "src/common/mysql/base.service";
+import { BaseService } from "../common/mysql/base.service";
 import { Repository } from "typeorm";
 import { UserDto } from "./dtos";
 import { UserEntity } from "./users.entity";

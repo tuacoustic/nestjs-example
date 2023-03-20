@@ -1,17 +1,17 @@
 import { Body, Controller, Get, HttpStatus, Post, Req, Res, UseGuards } from "@nestjs/common";
 import { ApiTags } from "@nestjs/swagger";
-import { authTypes } from "src/common/code-type/auth.code-type";
-import { Auth, User } from "src/common/decorators";
-import { Resp } from "src/common/resp";
-import { UserDto } from "src/users/dtos";
+import { authTypes } from "../common/code-type/auth.code-type";
+import { Auth, User } from "../common/decorators";
+import { Resp } from "../common/resp";
+import { UserDto } from "../users/dtos";
 import { AuthService } from "./auth.service";
 import { LoginDto } from "./login.dto";
 import { LocalAuthGuard } from "./guards";
 import { Response, Request } from 'express';
-import { CryptoService } from "src/common/crypto/crypto.service";
-import { cryptoTypes } from "src/common/code-type/crypto.code-type";
-import { userTypes } from "src/common/code-type/users.code-type";
-import { tokenLifeTime } from "src/common/constant";
+import { CryptoService } from "../common/crypto/crypto.service";
+import { cryptoTypes } from "../common/code-type/crypto.code-type";
+import { userTypes } from "../common/code-type/users.code-type";
+import { tokenLifeTime } from "../common/constant";
 
 @ApiTags('Auth API')
 @Controller('auth')

@@ -1,8 +1,8 @@
 import { Expose, Transform } from "class-transformer";
 import { IsArray, IsEmail, IsEnum, IsNotEmpty } from "class-validator";
-import { AppRoles } from "src/app.roles";
-import { BaseData } from "src/common/base.dto";
-import { EnumToString } from "src/common/helpers/enumToString";
+import { AppRoles } from "../../app.roles";
+import { BaseData } from "../../common/base.dto";
+import { EnumToString } from "../../common/helpers/enumToString";
 export class UserDto extends BaseData {
     @IsNotEmpty()
     firstname: string;

@@ -1,11 +1,11 @@
 import { Body, Controller, Get, HttpStatus, Post } from "@nestjs/common";
 import { ApiTags } from "@nestjs/swagger";
 import { InjectRolesBuilder, RolesBuilder } from "nest-access-control";
-import { AppResources } from "src/app.roles";
-import { postTypes } from "src/common/code-type/posts.code-type";
-import { Auth, User } from "src/common/decorators";
-import { Resp } from "src/common/resp";
-import { UserDto } from "src/users/dtos";
+import { AppResources } from "../app.roles";
+import { postTypes } from "../common/code-type/posts.code-type";
+import { Auth, User } from "../common/decorators";
+import { Resp } from "../common/resp";
+import { UserDto } from "../users/dtos";
 import { CreatePostDto } from "./dtos/posts.dto";
 import { PostService } from "./posts.service";
 

@@ -1,13 +1,13 @@
 import { Injectable } from '@nestjs/common';
-import { UserDto } from 'src/users/dtos';
-import { UserService } from 'src/users/users.service';
+import { UserDto } from '../users/dtos';
+import { UserService } from '../users/users.service';
 import { compare } from 'bcryptjs';
 import { JwtService } from '@nestjs/jwt';
-import configuration from 'src/config/configuration';
-import { RedisService } from 'src/common/redis/redis.service';
+import configuration from '../config/configuration';
+import { RedisService } from '../common/redis/redis.service';
 import { PassportStrategy } from '@nestjs/passport';
 import { Strategy } from 'passport-local';
-import { tokenLifeTime } from 'src/common/constant';
+import { tokenLifeTime } from '../common/constant';
 @Injectable()
 export class AuthService extends PassportStrategy(Strategy) {
 

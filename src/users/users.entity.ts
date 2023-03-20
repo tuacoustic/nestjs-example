@@ -1,7 +1,7 @@
-import { BaseEntity } from "src/common/mysql/base.entity";
+import { BaseEntity } from "../common/mysql/base.entity";
 import { BeforeInsert, BeforeUpdate, Column, Entity, OneToOne, PrimaryGeneratedColumn } from "typeorm";
 import { hash } from 'bcryptjs';
-import { PostEntity } from "src/posts/posts.entity";
+import { PostEntity } from "../posts/posts.entity";
 
 @Entity("users")
 export class UserEntity extends BaseEntity {

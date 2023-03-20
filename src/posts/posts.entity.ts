@@ -1,5 +1,5 @@
-import { BaseEntity } from "src/common/mysql/base.entity";
-import { UserEntity } from "src/users/users.entity";
+import { BaseEntity } from "../common/mysql/base.entity";
+import { UserEntity } from "../users/users.entity";
 import { Column, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
 
 @Entity('posts')

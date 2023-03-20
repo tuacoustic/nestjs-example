@@ -1,6 +1,6 @@
 import { HttpStatus, UnauthorizedException } from "@nestjs/common";
 import { AuthGuard } from "@nestjs/passport";
-import { authTypes } from "src/common/code-type/auth.code-type";
+import { authTypes } from "../../common/code-type/auth.code-type";
 
 export class JwtAuthGuard extends AuthGuard('jwt') {
     handleRequest(err: any, user: any) {
