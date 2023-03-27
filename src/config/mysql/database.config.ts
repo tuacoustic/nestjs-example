@@ -10,8 +10,8 @@ function typeOrmModuleOptions(): TypeOrmModuleOptions{
         username: process.env.DB_USERNAME,
         password: process.env.DB_PASSWORD,
         database: process.env.DB_NAME,
-        logging: "all",
-        synchronize: true, // Setting synchronize: true shouldn't be used in production - otherwise you can lose production data.
+        // logging: "all",
+        synchronize: false, // Setting synchronize: true shouldn't be used in production - otherwise you can lose production data.
         autoLoadEntities: true,
 
         // Implement Migrations

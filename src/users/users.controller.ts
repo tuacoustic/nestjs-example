@@ -26,7 +26,6 @@ export class UsersController {
             const findUser = await this.userService.getOne(findUserQuery, "email")
             if (findUser) {
                 return {
-                    status: HttpStatus.BAD_REQUEST,
                     data: [userTypes().USER_EXISTS],
                 }
             }
@@ -35,12 +34,10 @@ export class UsersController {
                 roles: [AppRoles.AUTHOR]
             });
             return {
-                status: HttpStatus.OK,
                 data: [UserDto.plainToClass(createdData)],
             }
         } catch (error) {
             return {
-                status: HttpStatus.INTERNAL_SERVER_ERROR,
                 data: [userTypes().USER_CREATE_ERROR],
                 error: error.message,
             }
@@ -52,12 +49,10 @@ export class UsersController {
         try {
             const createdData = await this.userService.save(userData);
             return {
-                status: HttpStatus.OK,
                 data: [UserDto.plainToClass(createdData)],
             };
         } catch (error) {
             return {
-                status: HttpStatus.INTERNAL_SERVER_ERROR,
                 data: [userTypes().USER_CREATE_ERROR],
                 error: error.message
             }
@@ -88,7 +83,6 @@ export class UsersController {
                 // Author Only
                 if (id != user.id) {
                     return {
-                        status: HttpStatus.NOT_ACCEPTABLE,
                         data: [userTypes().NOT_ALLOWED]
                     }
                 }
@@ -99,18 +93,15 @@ export class UsersController {
             }
             if (!updatedData) {
                 return {
-                    status: HttpStatus.NOT_FOUND,
                     data: [userTypes().USER_NOT_FOUND],
                 }
             }
             return {
-                status: HttpStatus.OK,
                 data: [updateData],
                 message: userTypes().USER_UPDATED_SUCCESSFULLY.message
             }
         } catch (error) {
             return {
-                status: HttpStatus.INTERNAL_SERVER_ERROR,
                 data: [userTypes(id).USER_CREATE_ERROR],
                 error: error.message,
             }
@@ -123,17 +114,14 @@ export class UsersController {
             const getuserById = await this.userService.getAllById(id);
             if (!getuserById) {
                 return {
-                    status: HttpStatus.NOT_FOUND,
                     data: [userTypes().USER_NOT_FOUND]
                 }
             }
             return {
-                status: HttpStatus.OK,
                 data: [getuserById],
             }
         } catch (error) {
             return {
-                status: HttpStatus.INTERNAL_SERVER_ERROR,
                 data: [userTypes().USER_GET_ERROR],
                 error: error.message
             }
@@ -146,17 +134,14 @@ export class UsersController {
             const deleteduserById = await this.userService.softDeleteById(id);
             if (!deleteduserById) {
                 return {
-                    status: HttpStatus.NOT_FOUND,
                     data: [userTypes().USER_NOT_FOUND],
                 }
             }
             return {
-                status: HttpStatus.OK,
                 data: [userTypes().USER_DELETED_SUCCESSFULLY],
             }
         } catch (error) {
             return {
-                status: HttpStatus.INTERNAL_SERVER_ERROR,
                 data: [userTypes(id).USER_DELETE_ERROR],
                 error: error.message
             }
@@ -178,7 +163,6 @@ export class UsersController {
             const userValues = await this.userService.getAll(rawFindDatabase);
             if (userValues.length == 0) {
                 return {
-                    status: HttpStatus.NOT_FOUND,
                     data: [userTypes().USER_NOT_FOUND],
                 }
             }
@@ -187,12 +171,10 @@ export class UsersController {
                 result.push(UserDto.plainToClass(userValues[index]));
             }
             return {
-                status: HttpStatus.OK,
                 data: result,
             }
         } catch (error) {
             return {
-                status: HttpStatus.INTERNAL_SERVER_ERROR,
                 data: [userTypes().USER_GETALL_ERROR],
                 error: error.message
             }

@@ -8,6 +8,7 @@ import { AuthModule } from './auth/auth.module';
 import { AccessControlModule } from 'nest-access-control';
 import { roles } from './app.roles';
 import { PostModule } from './posts/posts.module';
+import { TestModule } from './test/test.module';
 
 @Module({
   imports: [
@@ -26,6 +27,7 @@ import { PostModule } from './posts/posts.module';
     UserModule,
     AuthModule,
     PostModule,
+    TestModule,
   ],
 })
 export class AppModule {}

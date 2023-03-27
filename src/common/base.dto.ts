@@ -1,6 +1,6 @@
 import { Expose, plainToClass } from "class-transformer";
 
-export abstract class BaseData {
+export abstract class BaseDto {
     @Expose()
     id: string;
     @Expose()

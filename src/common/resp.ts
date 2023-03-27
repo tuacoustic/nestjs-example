@@ -14,8 +14,15 @@
 // }
 
 export interface Resp {
-    status: number,
     data: any,
     message?: string,
     error?: string,
+}
+
+export const responseTesting = (status: number, data: any, message?: string, error?: string): Resp => {
+    return {
+        data: Array.isArray(data) ? data : [data],
+        message,
+        error,
+    }
 }

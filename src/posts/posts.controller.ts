@@ -41,12 +41,10 @@ export class PostsController {
                 })
             }
             return {
-                status: HttpStatus.OK,
                 data: result,
             }
         } catch (error) {
             return {
-                status: HttpStatus.INTERNAL_SERVER_ERROR,
                 data: [postTypes().POST_CREATE_ERROR],
                 error: error.message,
             }
@@ -58,20 +56,18 @@ export class PostsController {
         possession: 'own',
     })
     @Post('/create')
-    async createPost(@Body() postData: CreatePostDto, @User() author: UserDto): Promise<any> {
+    async createPost(@Body() postData: CreatePostDto, @User() author: UserDto): Promise<Resp> {
         try {
             const savedData = await this.postService.save({
                 ...postData,
                 author: UserDto.plainToClass(author),
             });
             return {
-                status: HttpStatus.OK,
                 data: [savedData],
                 message: postTypes().POST_CREATE_SUCCESSFULLY.message
             }
         } catch (error) {
             return {
-                status: HttpStatus.INTERNAL_SERVER_ERROR,
                 data: [postTypes().POST_CREATE_ERROR],
                 error: error.message,
             }

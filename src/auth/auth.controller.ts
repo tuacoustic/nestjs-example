@@ -38,13 +38,11 @@ export class AuthController {
             })
             delete data.refreshToken
             return {
-                status: HttpStatus.OK,
                 data: [data],
                 message: authTypes().AUTH_LOGIN_SUCCESSFULLY.message,
             } 
         } catch (error) {
             return {
-                status: HttpStatus.INTERNAL_SERVER_ERROR,
                 data: [authTypes().AUTH_LOGIN_FAILED],
                 error: error.message,
             }
@@ -111,7 +109,6 @@ export class AuthController {
         @Req() req: any
     ): Resp {
         return {
-            status: HttpStatus.OK,
             data: [UserDto.plainToClass(user)],
         }
     }
@@ -124,7 +121,6 @@ export class AuthController {
         console.log(user);
         const data = this.authService.login(user);
         return {
-            status: HttpStatus.OK,
             data: [data],
             message: authTypes().AUTH_REFRESH_SUCCESSFULLY.message,
         }

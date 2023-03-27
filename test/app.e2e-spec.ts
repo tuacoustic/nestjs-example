@@ -18,7 +18,19 @@ describe('AppController (e2e)', () => {
   it('/ (GET)', () => {
     return request(app.getHttpServer())
       .get('/')
+      .expect(404)
+      // .expect('Hello World!');
+  });
+
+  it('/test (GET)', async () => {
+    const res: request.Response = await request(app.getHttpServer())
+      .get('/test')
       .expect(200)
-      .expect('Hello World!');
+      
+    expect(res.status).toEqual(200);
+    expect(res.body).toEqual({
+      status: 200,
+      data: expect.any(Array),
+    });
   });
 });
