@@ -13,7 +13,7 @@ export default () => ({
     secretKey: process.env.SECRET_KEY,
     secretIV: process.env.SECRET_IV,
     encryptMethod: process.env.ENCRYPT_METHOD || 'aes256',
-    redisHost: process.env.REDIS_HOST,
-    redisPort: parseInt(process.env.REDIS_PORT, 10),
-    redisDB: parseInt(process.env.REDIS_DB, 2),
+    redisHost: process.env.REDIS_HOST || '10.0.1.10',
+    redisPort: parseInt(process.env.REDIS_PORT, 10) || 6379,
+    redisDB: parseInt(process.env.REDIS_DB, 2) || 3,
 })
