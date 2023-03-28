@@ -7,7 +7,8 @@ export enum AppRoles {
 
 export enum AppResources {
     USERS = 'USERS',
-    POSTS = 'POSTS'
+    POSTS = 'POSTS',
+    TEST = 'TEST',
 }
 export const roles: RolesBuilder = new RolesBuilder();
 
@@ -27,4 +28,4 @@ roles
     .createAny([AppResources.USERS])
     .updateAny([AppResources.POSTS, AppResources.USERS])
     .deleteAny([AppResources.POSTS, AppResources.USERS])
-    .readAny([AppResources.POSTS, AppResources.USERS])
+    .readAny([AppResources.POSTS, AppResources.USERS, AppResources.TEST])
