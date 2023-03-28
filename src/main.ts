@@ -31,8 +31,6 @@ async function bootstrap() {
   initSwagger(app);
   const config = configuration();
 
-  const port = 3030;
-
   // Enable Cors
   app.enableCors({
     origin: 'http://localhost:3000',

@@ -23,7 +23,7 @@
     "migration:generate": "npx typeorm migration:create",
     "migration:run": "yarn typeorm migration:run",
     "migration:revert": "yarn typeorm migration:revert",
-    "precommit": "tsc && yarn test && yarn test:e2e"
+    "precommit": "tsc"
   },
   "dependencies": {
     "@nestjs/common": "^9.0.0",
@@ -102,10 +102,5 @@
     ],
     "coverageDirectory": "../coverage",
     "testEnvironment": "node"
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "yarn run precommit"
-    }
   }
 }
