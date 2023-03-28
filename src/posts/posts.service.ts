@@ -8,7 +8,7 @@ import { PostEntity } from "./posts.entity";
 @Injectable()
 export class PostService extends BaseService<PostEntity> {
     constructor(
-        @InjectRepository(PostEntity) private readonly postRepo: Repository<PostEntity>,
+        @InjectRepository(PostEntity) postRepo: Repository<PostEntity>,
     ) {
         super(postRepo)
     }

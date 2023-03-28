@@ -4,7 +4,7 @@ interface PostTypes {
     POST_CREATE_ERROR: ErrorType,
     POST_CREATE_SUCCESSFULLY: SuccessType,
 } 
-export const postTypes = function(id?: string): PostTypes {
+export const postTypes = function(_id?: string): PostTypes {
     return {
         POST_CREATE_ERROR: {
             error_code: 'POST_CREATE_ERROR',

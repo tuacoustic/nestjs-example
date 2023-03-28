@@ -1,6 +1,6 @@
 import { ValidationPipe } from '@nestjs/common';
 import { NestFactory } from '@nestjs/core';
-import * as cookieParser from 'cookie-parser';
+import cookieParser from 'cookie-parser';
 import { AppModule } from './app.module';
 import { initSwagger } from './app.swagger';
 import configuration from './config/configuration';
@@ -30,6 +30,8 @@ async function bootstrap() {
   // Swagger
   initSwagger(app);
   const config = configuration();
+
+  const port = 3030;
 
   // Enable Cors
   app.enableCors({

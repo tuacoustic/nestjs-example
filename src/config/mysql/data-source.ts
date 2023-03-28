@@ -8,7 +8,7 @@ export const dataSourceOptions: DataSourceOptions = {
     port: 3306,
     username: 'root',
     password: '',
-    database: 'gkitchen',
+    database: 'test',
     entities: [UserEntity],
     synchronize: false,
     migrations: [initialState1678673901834],

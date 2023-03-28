@@ -43,7 +43,7 @@ export class AuthService extends PassportStrategy(Strategy) {
     }
 
     login(user: UserDto) {
-        const { id, email, ...rest } = user;
+        const { id, email } = user;
         const payload = { sub: id, email };
         // Generate accesstoken
         const accessToken = this.signJWT(payload, tokenLifeTime.accessToken)

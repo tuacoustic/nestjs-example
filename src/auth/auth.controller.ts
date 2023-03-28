@@ -24,7 +24,7 @@ export class AuthController {
     @UseGuards(LocalAuthGuard)
     @Post('login')
     async login(
-        @Body() login: LoginDto, // Load to Swagger
+        @Body() _login: LoginDto, // Load to Swagger
         @User() userData: UserDto,
         @Res({ passthrough: true }) response: Response,
     ): Promise<Resp> {
@@ -52,7 +52,7 @@ export class AuthController {
     @Get('/get-session')
     async getSession(
         @Req() request: Request,
-        @User() user: UserDto,
+        @User() _user: UserDto,
     ){
         try {
             const { sub } = request.cookies;
@@ -90,7 +90,6 @@ export class AuthController {
             const { id, email } = findUser;
             const accessToken = this.authService.signJWT({ sub: id, email }, tokenLifeTime.accessToken);
             return {
-                status: HttpStatus.OK,
                 data: [{
                     user: UserDto.plainToClass(findUser),
                     accessToken,
@@ -98,7 +97,10 @@ export class AuthController {
                 message: authTypes().AUTH_LOGIN_SUCCESSFULLY.message,
             } 
         } catch (error) {
-
+            return {
+                data: [authTypes().AUTH_TOKEN_ERROR],
+                error: error.message
+            }
         }
     }
 
@@ -106,7 +108,7 @@ export class AuthController {
     @Get('profile')
     profile(
         @User() user: UserDto,
-        @Req() req: any
+        @Req() _req: any
     ): Resp {
         return {
             data: [UserDto.plainToClass(user)],

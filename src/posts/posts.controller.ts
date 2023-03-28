@@ -1,6 +1,5 @@
-import { Body, Controller, Get, HttpStatus, Post } from "@nestjs/common";
+import { Body, Controller, Get, Post } from "@nestjs/common";
 import { ApiTags } from "@nestjs/swagger";
-import { InjectRolesBuilder, RolesBuilder } from "nest-access-control";
 import { AppResources } from "../app.roles";
 import { postTypes } from "../common/code-type/posts.code-type";
 import { Auth, User } from "../common/decorators";
@@ -14,8 +13,6 @@ import { PostService } from "./posts.service";
 export class PostsController {
     constructor(
         private readonly postService: PostService,
-        @InjectRolesBuilder()
-        private readonly roleBuilder: RolesBuilder,
     ) {}
 
 

@@ -1,9 +1,11 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { INestApplication, ValidationPipe } from '@nestjs/common';
-import * as request from 'supertest';
+import request from 'supertest';
 import { TestModule } from '../src/test/test.module';
 import { getRepositoryToken } from '@nestjs/typeorm';
 import { TestEntity } from '../src/test/test.entity';
+import { AccessControlModule } from 'nest-access-control';
+import { roles } from '../src/app.roles';
 
 describe('TestController (e2e)', () => {
   let app: INestApplication;
@@ -19,7 +21,7 @@ describe('TestController (e2e)', () => {
 
   beforeEach(async () => {
     const moduleFixture: TestingModule = await Test.createTestingModule({
-      imports: [TestModule]
+      imports: [TestModule, AccessControlModule.forRoles(roles)]
     })
     .overrideProvider(getRepositoryToken(TestEntity))
     .useValue(mockTestRepository)

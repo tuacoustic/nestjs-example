@@ -19,7 +19,7 @@ export interface Resp {
     error?: string,
 }
 
-export const responseTesting = (status: number, data: any, message?: string, error?: string): Resp => {
+export const responseTesting = (_status: number, data: any, message?: string, error?: string): Resp => {
     return {
         data: Array.isArray(data) ? data : [data],
         message,

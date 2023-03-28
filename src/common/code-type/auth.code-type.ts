@@ -10,7 +10,7 @@ interface AuthTypes {
     AUTH_NOTMATCH: ErrorType,
     AUTH_REFRESH_TOKEN_EXPIRED: ErrorType,
 } 
-export const authTypes = function(id?: string): AuthTypes {
+export const authTypes = function(_id?: string): AuthTypes {
     return {
         AUTH_LOGIN_SUCCESSFULLY: {
             code: 'AUTH_LOGIN_SUCCESSFULLY',

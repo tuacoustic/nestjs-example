@@ -1,6 +1,6 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { getRepositoryToken } from '@nestjs/typeorm';
-import { testStub, testStubArray } from './stubs/test.stub';
+import { testStubArray } from './stubs/test.stub';
 import { TestEntity } from './test.entity';
 import { TestService } from './test.service';
 import { mockTestServiceRepo } from './__mocks__/test.service';

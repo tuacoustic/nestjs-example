@@ -1,4 +1,4 @@
-import { ErrorType, SuccessType } from "../constant"
+import { ErrorType } from "../constant"
 
 interface ValidationTypes {
     VALIDATION_ERROR: ErrorType
