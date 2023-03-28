@@ -1,17 +1,24 @@
 import { Body, Controller, Get, Param, Post, Put } from '@nestjs/common';
-import { HttpStatus } from '@nestjs/common/enums';
+import { ApiTags } from '@nestjs/swagger';
+import { AppResources } from '../../src/app.roles';
+import { Auth } from '../../src/common/decorators';
 import { testTypes } from '../common/code-type/test.code-type';
 import { Resp } from '../common/resp';
 import { TestDto } from './test.dto';
-import { TestEntity } from './test.entity';
 import { TestService } from './test.service';
 
+@ApiTags('Test API')
 @Controller('test')
 export class TestController {
     constructor(
         private readonly testService: TestService
     ){}
 
+    @Auth({
+        possession: 'any',
+        action: 'read',
+        resource: AppResources.TEST
+    })
     @Get()
     async list(): Promise<Resp> {
         return {

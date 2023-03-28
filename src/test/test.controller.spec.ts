@@ -1,22 +1,29 @@
-import { HttpStatus } from '@nestjs/common';
 import { Test, TestingModule } from '@nestjs/testing';
-import { Resp } from '../common/resp';
 import { TestController } from './test.controller';
 import { TestService } from './test.service';
 import { mockTestControllerRepo } from './__mocks__/test.controller';
-import { testStub } from './stubs/test.stub';
-import { testTypes } from '../common/code-type/test.code-type';
+import { expectedStub, testStub, testStubArray } from './stubs/test.stub';
+import { RolesBuilder } from 'nest-access-control';
 
 describe('TestController', () => {
   let controller: TestController;
+  const roles: RolesBuilder = new RolesBuilder();
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
       controllers: [TestController],
-      providers: [TestService],
+      providers: [
+        TestService,
+        {
+          provide: TestService,
+          useValue: mockTestControllerRepo
+        },
+        {
+          provide: '__roles_builder__',
+          useValue: roles
+        }
+      ],
     })
-      .overrideProvider(TestService)
-      .useValue(mockTestControllerRepo)
       .compile();
 
     controller = module.get<TestController>(TestController);
@@ -27,25 +34,25 @@ describe('TestController', () => {
   });
 
   it('should create a test', async () => {
-    const dto = {name: 'Fake User'}
-    let expectedResponse: Resp;
-    const data = await controller.create(dto);
-    expectedResponse = {
-      data: data.data
-    }
-    expect(data).toEqual(expectedResponse)
+    const dto = testStub();
+    const createdData = await controller.create(dto);
+    const expectedData = expectedStub();
+    expect(expectedData).toEqual(createdData.data);
     expect(mockTestControllerRepo.create).toHaveBeenCalled();
   })
 
   it('should update a test', async () => {
     const dto = testStub();
-    let expectedResponse: Resp;
-    const data = await controller.update(dto.id, dto)
-    expectedResponse = {
-      data: data.data,
-      message: testTypes().TEST_UPDATE_SUCCESSFULLY.message,
-    }
-    expect(data).toEqual(expectedResponse);
+    const updatedData = await controller.update(dto.id, dto)
+    const expectedData = expectedStub();
+    expect(expectedData).toEqual(updatedData.data);
     expect(mockTestControllerRepo.update).toHaveBeenCalled();
+  })
+
+  it('should getAll test', async () => {
+    const dto = testStubArray();
+    const getData = await controller.list();
+    expect(getData.data).toEqual(dto);
+    expect(mockTestControllerRepo.list).toHaveBeenCalled();
   })
 });

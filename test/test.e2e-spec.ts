@@ -7,7 +7,7 @@ import { TestEntity } from '../src/test/test.entity';
 
 describe('TestController (e2e)', () => {
   let app: INestApplication;
-
+  
   const mockTestRepository = {
     find: jest.fn().mockResolvedValue({}),
     create: jest.fn().mockImplementation(dto => dto),
@@ -19,7 +19,7 @@ describe('TestController (e2e)', () => {
 
   beforeEach(async () => {
     const moduleFixture: TestingModule = await Test.createTestingModule({
-      imports: [TestModule],
+      imports: [TestModule]
     })
     .overrideProvider(getRepositoryToken(TestEntity))
     .useValue(mockTestRepository)
@@ -28,10 +28,6 @@ describe('TestController (e2e)', () => {
     app = moduleFixture.createNestApplication();
     app.useGlobalPipes(new ValidationPipe())
     await app.init();
-  });
-
-  it('/test (GET)', async () => {
-    return request(app.getHttpServer()).get('/test').expect(200);
   });
 
   it('/test (POST)', async () => {

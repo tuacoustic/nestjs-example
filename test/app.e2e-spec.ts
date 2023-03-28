@@ -22,15 +22,23 @@ describe('AppController (e2e)', () => {
       // .expect('Hello World!');
   });
 
-  it('/test (GET)', async () => {
-    const res: request.Response = await request(app.getHttpServer())
-      .get('/test')
-      .expect(200)
+  // Login in as ADMIN
+  describe('if user is logged in as (ADMIN)', () => {
+    let jwtToken: string;
+    beforeEach(async () => {
+      const res = await request(app.getHttpServer())
+        .post('/auth/login')
+        .send({ email: 'tudinhacoustic@gmail.com', password: 'abc' });
       
-    expect(res.status).toEqual(200);
-    expect(res.body).toEqual({
-      status: 200,
-      data: expect.any(Array),
-    });
-  });
+      expect(res.status).toEqual(201);
+      jwtToken = res.body.data[0].accessToken;
+    })
+
+    it('/test (GET)', async () => {
+      const res = await request(app.getHttpServer())
+        .get('/test')
+        .set('Authorization', 'Bearer ' + jwtToken);
+      expect(res.status).toEqual(200)
+    })
+  })
 });

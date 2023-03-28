@@ -1,5 +1,6 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { getRepositoryToken } from '@nestjs/typeorm';
+import { testStub, testStubArray } from './stubs/test.stub';
 import { TestEntity } from './test.entity';
 import { TestService } from './test.service';
 import { mockTestServiceRepo } from './__mocks__/test.service';
@@ -27,5 +28,11 @@ describe('TestService', () => {
       id: expect.any(Number),
       name: 'Fake Data',
     })
+  })
+
+  it('should get a list test records', async () => {
+    const dto = testStubArray()
+    const getData = await service.list();
+    expect(getData).toEqual(dto);
   })
 });

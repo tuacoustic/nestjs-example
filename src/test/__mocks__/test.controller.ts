@@ -1,7 +1,7 @@
-import { Resp } from "src/common/resp"
+import { testStubArray } from "../stubs/test.stub"
 
 export const mockTestControllerRepo = {
-    create: jest.fn((dto): Resp => {
+    create: jest.fn((dto) => {
       return {
         id: Date.now(),
         ...dto
@@ -11,4 +11,7 @@ export const mockTestControllerRepo = {
       id,
       ...dto,
     })),
+    list: jest.fn().mockImplementation(() => {
+      return testStubArray();
+    })
   }
